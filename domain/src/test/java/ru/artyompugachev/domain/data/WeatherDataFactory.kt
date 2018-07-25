@@ -2,7 +2,7 @@ package ru.artyompugachev.domain.data
 
 import ru.artyompugachev.domain.model.Weather
 
-class WeatherDataFactory {
+object WeatherDataFactory {
 
     fun randomDouble(): Double {
         return Math.random()
