@@ -7,7 +7,7 @@ import ru.artyompugachev.data.repository.WeatherDataStore
 import ru.artyompugachev.data.repository.WeatherRemote
 import javax.inject.Inject
 
-class WeatherRemoteDataStore @Inject constructor(private val weatherRemote: WeatherRemote):
+open class WeatherRemoteDataStore @Inject constructor(private val weatherRemote: WeatherRemote):
         WeatherDataStore {
     override fun getCurrentWeather(): Observable<WeatherEntity> {
         return weatherRemote.getCurrentWeather()
