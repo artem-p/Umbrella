@@ -2,11 +2,10 @@ package ru.artyompugachev.data
 
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
-import io.reactivex.rxkotlin.zipWith
 import ru.artyompugachev.data.mapper.WeatherMapper
 import ru.artyompugachev.data.repository.WeatherCache
 import ru.artyompugachev.data.store.WeatherDataStoreFactory
-import ru.artyompugachev.domain.model.Weather
+import ru.artyompugachev.domain.model.WeatherRecord
 import ru.artyompugachev.domain.repository.WeatherRepository
 import javax.inject.Inject
 
@@ -16,7 +15,7 @@ class WeatherDataRepository @Inject constructor(
         private val factory: WeatherDataStoreFactory
 ): WeatherRepository {
 
-    override fun getCurrentWeather(): Observable<Weather> {
+    override fun getCurrentWeather(): Observable<WeatherRecord> {
 
         return Observable.zip(cache.isWeatherCached().toObservable(),
                 cache.isWeatherCacheExpired().toObservable(),
@@ -39,7 +38,7 @@ class WeatherDataRepository @Inject constructor(
                 }
     }
 
-    override fun getForecasts(): Observable<List<Weather>> {
+    override fun getForecasts(): Observable<List<WeatherRecord>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

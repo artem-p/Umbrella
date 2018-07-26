@@ -1,6 +1,7 @@
 package ru.artyompugachev.domain.data
 
 import ru.artyompugachev.domain.model.Weather
+import ru.artyompugachev.domain.model.WeatherRecord
 
 object WeatherDataFactory {
 
@@ -14,19 +15,23 @@ object WeatherDataFactory {
     }
 
 
-    fun makeWeather(): Weather {
-        return Weather(randomInt(), randomDouble(), randomDouble(), randomDouble(), randomDouble(),
+    private fun makeWeatherRecord(): WeatherRecord {
+        return WeatherRecord(randomInt(), randomDouble(), randomDouble(), randomDouble(), randomDouble(),
                 randomDouble(), randomDouble(), randomDouble(), randomDouble(), randomDouble(), randomInt())
     }
 
 
-    fun makeWeatherList(number: Int): List<Weather> {
-        val weathers = mutableListOf<Weather>()
+    private fun makeWeatherList(number: Int): List<WeatherRecord> {
+        val weathers = mutableListOf<WeatherRecord>()
 
         repeat(number) {
-            weathers.add(makeWeather())
+            weathers.add(makeWeatherRecord())
         }
 
         return weathers
+    }
+
+    fun makeWeather(): Weather {
+        return Weather(makeWeatherRecord(), makeWeatherList(3))
     }
 }

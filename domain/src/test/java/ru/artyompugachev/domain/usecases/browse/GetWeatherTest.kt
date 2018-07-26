@@ -11,8 +11,8 @@ import ru.artyompugachev.domain.executor.PostExecutionThread
 import ru.artyompugachev.domain.model.Weather
 import ru.artyompugachev.domain.repository.WeatherRepository
 
-class GetCurrentWeatherTest {
-    private lateinit var getCurrentWeather: GetCurrentWeather
+class GetWeatherTest {
+    private lateinit var getWeather: GetWeather
 
     @Mock lateinit var weatherRepository: WeatherRepository
     @Mock lateinit var postExecutionThread: PostExecutionThread
@@ -21,29 +21,29 @@ class GetCurrentWeatherTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        getCurrentWeather = GetCurrentWeather(weatherRepository, postExecutionThread)
+        getWeather = GetWeather(weatherRepository, postExecutionThread)
     }
 
 
     @Test
-    fun getCurrentWeatherCompletes() {
-        stubGetCurrentWeather(Observable.just(WeatherDataFactory.makeWeather()))
-        val testObserver = getCurrentWeather.buildUseCaseObservable().test()
+    fun getWeatherCompletes() {
+        stubGetWeather(Observable.just(WeatherDataFactory.makeWeather()))
+        val testObserver = getWeather.buildUseCaseObservable().test()
         testObserver.assertComplete()
     }
 
 
     @Test
-    fun getCurrentWeatherReturnsData() {
+    fun getWeatherReturnsData() {
         val weather = WeatherDataFactory.makeWeather()
-        stubGetCurrentWeather(Observable.just(weather))
-        val testObserver = getCurrentWeather.buildUseCaseObservable().test()
+        stubGetWeather(Observable.just(weather))
+        val testObserver = getWeather.buildUseCaseObservable().test()
         testObserver.assertValue(weather)
     }
 
 
-    fun stubGetCurrentWeather(stubWeather: Observable<Weather>) {
-        whenever(weatherRepository.getCurrentWeather())
+    private fun stubGetWeather(stubWeather: Observable<Weather>) {
+        whenever(weatherRepository.getWeather())
                 .thenReturn(stubWeather)
     }
 }

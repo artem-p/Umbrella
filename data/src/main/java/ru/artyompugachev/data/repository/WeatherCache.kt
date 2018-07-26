@@ -4,8 +4,6 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import ru.artyompugachev.data.model.WeatherEntity
-import ru.artyompugachev.domain.model.Weather
-import ru.artyompugachev.domain.usecases.browse.GetCurrentWeather
 
 
 /**
