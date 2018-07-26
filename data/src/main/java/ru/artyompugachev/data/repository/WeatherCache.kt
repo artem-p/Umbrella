@@ -8,14 +8,13 @@ import ru.artyompugachev.data.model.WeatherEntity
 
 interface WeatherCache {
 
-    fun clearCurrentWeather(): Completable
+    fun clearWeather(): Completable
 
-    fun saveCurrentWeather(): Completable
-
-
+    fun saveWeather(): Completable
 
     fun getCurrentWeather(): Observable<WeatherEntity>
 
+    fun getForecasts(): Observable<List<WeatherEntity>>
 
     fun isWeatherCached(): Single<Boolean>
 
