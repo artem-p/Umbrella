@@ -13,8 +13,8 @@ import javax.inject.Inject
 class WeatherDataRepository @Inject constructor(
         private val mapper: WeatherMapper,
         private val cache: WeatherCache,
-        private val factory: WeatherDataStoreFactory
-): WeatherRepository {
+        private val factory: WeatherDataStoreFactory)
+    : WeatherRepository {
 
     override fun getWeather(): Observable<Weather> {
 
