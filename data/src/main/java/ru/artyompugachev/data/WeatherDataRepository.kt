@@ -6,7 +6,6 @@ import ru.artyompugachev.data.mapper.WeatherMapper
 import ru.artyompugachev.data.repository.WeatherCache
 import ru.artyompugachev.data.store.WeatherDataStoreFactory
 import ru.artyompugachev.domain.model.Weather
-import ru.artyompugachev.domain.model.WeatherRecord
 import ru.artyompugachev.domain.repository.WeatherRepository
 import javax.inject.Inject
 

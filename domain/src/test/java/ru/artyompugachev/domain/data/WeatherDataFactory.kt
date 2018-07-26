@@ -5,12 +5,12 @@ import ru.artyompugachev.domain.model.WeatherRecord
 
 object WeatherDataFactory {
 
-    fun randomDouble(): Double {
+    private fun randomDouble(): Double {
         return Math.random()
     }
 
 
-    fun randomInt(): Int {
+    private fun randomInt(): Int {
         return Math.random().toInt()
     }
 
