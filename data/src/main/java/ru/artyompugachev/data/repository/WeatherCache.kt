@@ -4,13 +4,19 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import ru.artyompugachev.data.model.WeatherEntity
+import ru.artyompugachev.domain.model.Weather
+import ru.artyompugachev.domain.usecases.browse.GetCurrentWeather
 
 
+/**
+ * Cache current weather and forecasts.
+ * Save both at the same time.
+ * */
 interface WeatherCache {
 
     fun clearWeather(): Completable
 
-    fun saveWeather(): Completable
+    fun saveWeather(currentWeather: WeatherEntity, forecasts: List<WeatherEntity>): Completable
 
     fun getCurrentWeather(): Observable<WeatherEntity>
 
