@@ -2,7 +2,7 @@ package ru.artyompugachev.data
 
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
-import ru.artyompugachev.data.mapper.WeatherMapper
+import ru.artyompugachev.data.mapper.WeatherRecordMapper
 import ru.artyompugachev.data.repository.WeatherCache
 import ru.artyompugachev.data.store.WeatherDataStoreFactory
 import ru.artyompugachev.domain.model.WeatherRecord
@@ -10,7 +10,7 @@ import ru.artyompugachev.domain.repository.WeatherRepository
 import javax.inject.Inject
 
 class WeatherDataRepository @Inject constructor(
-        private val mapper: WeatherMapper,
+        private val mapper: WeatherRecordMapper,
         private val cache: WeatherCache,
         private val factory: WeatherDataStoreFactory
 ): WeatherRepository {

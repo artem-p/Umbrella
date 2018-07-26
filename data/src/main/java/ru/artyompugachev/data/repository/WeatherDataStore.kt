@@ -2,15 +2,15 @@ package ru.artyompugachev.data.repository
 
 import io.reactivex.Completable
 import io.reactivex.Observable
-import ru.artyompugachev.data.model.WeatherEntity
+import ru.artyompugachev.data.model.WeatherRecordEntity
 
 interface WeatherDataStore {
 
-    fun getCurrentWeather(): Observable<WeatherEntity>
+    fun getCurrentWeather(): Observable<WeatherRecordEntity>
 
-    fun getForecasts(): Observable<List<WeatherEntity>>
+    fun getForecasts(): Observable<List<WeatherRecordEntity>>
 
-    fun saveWeather(currentWeather: WeatherEntity, forecasts: List<WeatherEntity>): Completable
+    fun saveWeather(currentWeatherRecord: WeatherRecordEntity, forecasts: List<WeatherRecordEntity>): Completable
 
     fun clearWeather(): Completable
 }

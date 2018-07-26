@@ -3,7 +3,7 @@ package ru.artyompugachev.data.repository
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import ru.artyompugachev.data.model.WeatherEntity
+import ru.artyompugachev.data.model.WeatherRecordEntity
 
 
 /**
@@ -14,11 +14,11 @@ interface WeatherCache {
 
     fun clearWeather(): Completable
 
-    fun saveWeather(currentWeather: WeatherEntity, forecasts: List<WeatherEntity>): Completable
+    fun saveWeather(currentWeatherRecord: WeatherRecordEntity, forecasts: List<WeatherRecordEntity>): Completable
 
-    fun getCurrentWeather(): Observable<WeatherEntity>
+    fun getCurrentWeather(): Observable<WeatherRecordEntity>
 
-    fun getForecasts(): Observable<List<WeatherEntity>>
+    fun getForecasts(): Observable<List<WeatherRecordEntity>>
 
     fun isWeatherCached(): Single<Boolean>
 
