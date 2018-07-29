@@ -1,8 +1,10 @@
 package ru.artyompugachev.data.store
 
+import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
+import io.reactivex.Completable
 import io.reactivex.Observable
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -46,8 +48,40 @@ class WeatherCacheDataStoreTest {
     }
 
 
+    @Test
+    fun saveWeatherCompletes() {
+        stubSaveWeather(Completable.complete())
+        stubWeatherCacheSetLastCacheTime(Completable.complete())
+
+        val testObserver = store.saveWeather(WeatherDataFactory.makeWeatherEntity()).test()
+
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun saveWeatherCallsCache() {
+        stubSaveWeather(Completable.complete())
+        stubWeatherCacheSetLastCacheTime(Completable.complete())
+
+        store.saveWeather(WeatherDataFactory.makeWeatherEntity()).test()
+
+        verify(cache).saveWeather(any())
+    }
+
+
     private fun stubWeatherCacheGetWeather(observable: Observable<WeatherEntity>) {
         whenever(cache.getWeather())
                 .thenReturn(observable)
+    }
+
+    private fun stubSaveWeather(completable: Completable) {
+        whenever(cache.saveWeather(any()))
+                .thenReturn(completable)
+    }
+
+
+    private fun stubWeatherCacheSetLastCacheTime(completable: Completable) {
+        whenever(cache.setLastCacheTime(any()))
+                .thenReturn(completable)
     }
 }
