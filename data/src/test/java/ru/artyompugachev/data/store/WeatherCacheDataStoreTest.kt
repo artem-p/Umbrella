@@ -1,6 +1,7 @@
 package ru.artyompugachev.data.store
 
 import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Observable
 import org.junit.Test
@@ -23,6 +24,25 @@ class WeatherCacheDataStoreTest {
         val testObserver = store.getWeather().test()
 
         testObserver.assertComplete()
+    }
+
+
+    @Test
+    fun getWeatherReturnsData() {
+        val data = WeatherDataFactory.makeWeatherEntity()
+        stubWeatherCacheGetWeather(Observable.just(data))
+
+        val testObserver = store.getWeather().test()
+        testObserver.assertValue(data)
+    }
+
+
+    @Test
+    fun getWeatherCallsCacheSource() {
+        stubWeatherCacheGetWeather(Observable.just(WeatherDataFactory.makeWeatherEntity()))
+        store.getWeather()
+
+        verify(cache).getWeather()
     }
 
 
