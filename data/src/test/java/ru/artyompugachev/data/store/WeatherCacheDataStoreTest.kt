@@ -68,6 +68,23 @@ class WeatherCacheDataStoreTest {
         verify(cache).saveWeather(any())
     }
 
+    @Test
+    fun clearProjectsCompletes() {
+        stubClearWeather(Completable.complete())
+
+        val testObserver = store.clearWeather().test()
+        testObserver.assertComplete()
+    }
+
+
+    @Test
+    fun clearProjectsCallsCache() {
+        stubClearWeather(Completable.complete())
+
+        store.clearWeather()
+        verify(cache).clearWeather()
+    }
+
 
     private fun stubWeatherCacheGetWeather(observable: Observable<WeatherEntity>) {
         whenever(cache.getWeather())
@@ -82,6 +99,11 @@ class WeatherCacheDataStoreTest {
 
     private fun stubWeatherCacheSetLastCacheTime(completable: Completable) {
         whenever(cache.setLastCacheTime(any()))
+                .thenReturn(completable)
+    }
+
+    private fun stubClearWeather(completable: Completable) {
+        whenever(cache.clearWeather())
                 .thenReturn(completable)
     }
 }
