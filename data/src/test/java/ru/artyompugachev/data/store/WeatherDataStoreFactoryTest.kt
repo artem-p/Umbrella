@@ -9,7 +9,6 @@ class WeatherDataStoreFactoryTest {
     private val remoteStore = mock<WeatherRemoteDataStore>()
     private val factory = WeatherDataStoreFactory(cacheStore, remoteStore)
 
-    // todo add weather data repository test
 
     @Test
     fun getDataStoreReturnsCacheStoreWhenCacheExists() {

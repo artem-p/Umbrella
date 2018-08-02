@@ -4,7 +4,7 @@ import ru.artyompugachev.data.model.WeatherEntity
 import ru.artyompugachev.domain.model.Weather
 import javax.inject.Inject
 
-class WeatherMapper @Inject constructor() : EntityMapper<WeatherEntity, Weather> {
+open class WeatherMapper @Inject constructor() : EntityMapper<WeatherEntity, Weather> {
     override fun mapFromEntity(entity: WeatherEntity): Weather {
         val weatherRecordMapper = WeatherRecordMapper()
 
